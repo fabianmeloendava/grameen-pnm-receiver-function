@@ -1,0 +1,10 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "schedule": "0 */1 * * * *",
+    "FUNCTIONS_WORKER_RUNTIME": "java",
+    "AzureWebJobsDashboard": "",
+    "languageWorkers:java:arguments": "-Djava.net.preferIPv4Stack=true -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
+  }
+}
