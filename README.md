@@ -1,30 +1,40 @@
 ---
-page_type: sample
+page_type: job
 languages:
 - java
-products:
+  products:
 - azure
-description: "This is a sample application to showcase the use of Spring Cloud Function on top of Azure Functions."
-urlFragment: hello-spring-function-azure
+  description: "This function pull the PayNearMe payments each day  to Azure Queue Storage.
 ---
 
-# Example "Hello, world" Spring Boot application that runs on Azure Functions
+# Receiver PNM Function
 
-This is a sample application to showcase the use of Spring Cloud Function on top of Azure Functions.
+This is the function to pull the repayments information from  PNM to set into the Azure Storage Queue 
 
 ## Features
 
-This is just a "Hello, world", but it uses domain objects so it's easy to extend to do something more complex.
+StorageService
+MambuService
 
 ## Getting Started
 
 ### Prerequisites
+#### Emulator for local Azure Storage development
+With npm installed
+npm install -g azurite
+without npm installed:
+git clone https://github.com/Azure/Azurite.git
+npm install
+npm run build
+npm install -g
+##### Run Azurite
+azurite --silent --location c:\azurite --debug c:\azurite\debug.log
 
 This project uses the Maven Wrapper, so all you need is Java installed.
 
 ### Installation
 
-- Clone the project: `git clone https://github.com/Azure-Samples/hello-spring-function-azure.git`
+- Clone the project: `git clone https://github.com/grameen-america-inc/grameen-pnm-receiver-function.git`
 - Configure the project to use your own resource group and your own application name (it should be unique across Azure)
   - Open the `pom.xml` file
   - Customize the `functionResourceGroup` and `functionAppName` properties
@@ -36,9 +46,6 @@ Once the application is built, you can run it locally using the Azure Function M
 
 `./mvnw azure-functions:run`
 
-And you can test it using a cURL command:
-
-`curl http://localhost:7071/api/hello -d '{"name": "Azure"}'`
 
 ## Deploying to Azure Functions
 
@@ -47,15 +54,3 @@ Deploy the application on Azure Functions with the Azure Function Maven plug-in:
 `./mvnw azure-functions:deploy`
 
 You can then test the running application, by running a POST request:
-
-```
-curl https://<YOUR_SPRING_FUNCTION_NAME>.azurewebsites.net/api/hello -d '{"name": "Azure"}'
-```
-
-Or a GET request:
-
-```
-curl https://<YOUR_SPRING_FUNCTION_NAME>.azurewebsites.net/api/hello?name=Azure
-```
-
-Replace the `<YOUR_SPRING_FUNCTION_NAME>` part by the name of your Spring Function.

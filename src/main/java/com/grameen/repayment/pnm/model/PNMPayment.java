@@ -1,17 +1,18 @@
 package com.grameen.repayment.pnm.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 
 
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@XmlAccessorType(XmlAccessType.FIELD)
 public class PNMPayment {
 
     @XmlAttribute(name = "payment_made")
@@ -40,6 +41,10 @@ public class PNMPayment {
 
     @XmlAttribute(name = "site_customer_identifier")
     private String siteCustomerIdentifier;
+
+    private String centreKey;
+
+    private String memberKey;
 
 
 }

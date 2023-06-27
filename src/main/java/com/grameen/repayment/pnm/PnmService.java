@@ -24,8 +24,7 @@ public class PnmService {
     private final PnmApiClient pnmApiClient;
 
 
-    @Value("${pnm.api.site.identifier}")
-    String siteIdentifier;
+
     @Value("${pnm.api.site.signature}")
     String secretKey;
 
@@ -42,7 +41,7 @@ public class PnmService {
      * @param endDate   end date to query payments
      * @return List of payments
      */
-    public List<PNMPayment> getPaymentBySegment(String startDate, String endDate) {
+    public List<PNMPayment> getPaymentBySegment(String siteIdentifier, String startDate, String endDate) {
         var signatureFinal = createSignature(siteIdentifier, startDate, endDate, secretKey);
         try {
             if (signatureFinal.size() == 0) {

@@ -35,13 +35,11 @@ public class PnmStorageService {
     private static final String ERROR_GET_DATES = " Error getting dates from json file in Azure Storage Container ";
     private static final String ERROR_STORAGE_FILE = " Error in storage Json File to Storage Container ";
     private static final String INFO_NEW_DATES = " Storing new Segment of Dates: ";
-    @Value("${spring.cloud.azure.storage.queue.queue-name}")
-    String queueName;
-    @Value("${spring.cloud.azure.storage.connection-string}")
+    @Value("${grameen.storage.connection-string}")
     private String connectionString;
-    @Value("${spring.cloud.azure.storage.blob.container-name}")
+    @Value("${grameen.storage.blob.container-name}")
     private String containerName;
-    @Value("${spring.cloud.azure.storage.blob.blob-name}")
+    @Value("${grameen.storage.blob.blob-name}")
     private String blobName;
     @Value("${date.format}")
     private String dateFormat;
@@ -53,7 +51,7 @@ public class PnmStorageService {
      * @param msg Message to be stored
      * @return Queue Message ID, identify the message in the Queue
      */
-    public String sendPaymentToQueue(String msg) {
+    public String sendPaymentToQueue(String queueName, String msg) {
         String messageId;
         try {
             QueueServiceClient queueServiceClient = new QueueServiceClientBuilder()

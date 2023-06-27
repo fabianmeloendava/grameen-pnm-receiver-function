@@ -1,9 +1,8 @@
 package com.grameen.repayment;
 
-import com.grameen.repayment.pnm.PnmService;
 import com.microsoft.azure.functions.ExecutionContext;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.function.adapter.azure.FunctionInvoker;
 import reactor.core.publisher.Mono;
 
@@ -11,10 +10,9 @@ import java.util.logging.Logger;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RepaymentJobTest {
+@SpringBootTest
+ class RepaymentFunctionApplicationTest {
 
-    @Mock
-    PnmService pnmService;
 
     @Test
     private void test() {
@@ -23,13 +21,13 @@ public class RepaymentJobTest {
     }
 
     @Test
-    private void start() {
+     private void start() {
         FunctionInvoker<String, String> handler = new FunctionInvoker<>(
                 RepaymentFunction.class);
         String result = handler.handleRequest(new String("Triggered"), new ExecutionContext() {
             @Override
             public Logger getLogger() {
-                return Logger.getLogger(RepaymentJobTest.class.getName());
+                return Logger.getLogger(RepaymentFunctionApplicationTest.class.getName());
             }
 
             @Override
